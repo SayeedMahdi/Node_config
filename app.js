@@ -9,6 +9,7 @@ const { createReadStream } = require("fs");
 
 
 app.get("/", async (req, res) => {
+    
     const Stream = createReadStream("./fixe.txt", "utf-8");
     Stream.on("open", () => {
         
