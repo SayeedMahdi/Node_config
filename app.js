@@ -2,8 +2,8 @@
 const express = require("express"); 
 const app = express();
 const {people}= require("./data");
-const middle = require("./Middleware");
-const errorHandler = require("./errorMiddle");
+const middle = require("./middleware/Middleware");
+const errorHandler = require("./middleware/errorMiddle");
 
 
 require("dotenv").config();
@@ -48,12 +48,13 @@ app.get("/api/people",(req,res) =>{
     res.status(200).send({data:people}); 
 })
 app.post("/api/people",(req,res) =>{
+    const {name} = req.body;
     try{
-    if(!req.body.name){
+    if(!name){
         res.status(400);
         throw new Error("Name is not enterd");
     }
-    res.status(200).send({data:people}); 
+    res.status(200).send({person:name});
 }catch(err){
     res.send(err)
 }
