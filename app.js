@@ -2,12 +2,16 @@
 const express = require("express"); 
 const app = express();
 const {people}= require("./data");
-const middle = require("./controler");
+const middle = require("./Middleware");
+const errorHandler = require("./errorMiddle");
+
 
 require("dotenv").config();
 // app.use(express.static("./navbar-app"));
 app.use(express.static("./methods-public"));
-app.use(express.urlencoded({extended:false}))
+app.use(express.urlencoded({extended:false}));
+app.use(express.json());
+app.use(errorHandler.errMiddle)
 //we used to read a file manully
 // const { createReadStream } = require("fs");
 
@@ -42,6 +46,18 @@ app.post("/login",middle,(req,res) =>{
 //get data 
 app.get("/api/people",(req,res) =>{
     res.status(200).send({data:people}); 
+})
+app.post("/api/people",(req,res) =>{
+    try{
+    if(!req.body.name){
+        res.status(400);
+        throw new Error("Name is not enterd");
+    }
+    res.status(200).send({data:people}); 
+}catch(err){
+    res.send(err)
+}
+   
 })
 const url = process.env.PORT;
 const server = app.listen(url , console.log(`app is listening port: ${url}`));
