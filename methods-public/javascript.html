@@ -48,12 +48,13 @@
 
       const fetchPeople = async () => {
         try {
-          const { data } = await axios.get('/api/v1/people')
-
-          const people = data.data.map((person) => {
-            return `<h5>${person.name}</h5>`
+          
+          const { data } = await axios.get('/api/v1/people');
+          console.log(data);
+          const user = data.users.map((user) => {
+            return `<h5>${user.name}</h5>`
           })
-          result.innerHTML = people.join('')
+          result.innerHTML = user.join('')
         } catch (error) {
           result.innerHTML = `<div class="alert alert-danger">Can't Fetch Data</div>`
         }
@@ -69,8 +70,9 @@
 
         try {
           const { data } = await axios.post('/api/v1/people', { name: nameValue })
+          console.log(data);
           const h5 = document.createElement('h5')
-          h5.textContent = fetchPeople();
+          h5.textContent = data.user.name;
           result.appendChild(h5)
         } catch (error) {
           // console.log(error.response)
