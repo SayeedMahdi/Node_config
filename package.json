@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js"
+    "start": "nodemon app.js",
+    "data:me":"nodemon data.js",
+    "data:file":"nodemon tixe.txt"
   },
   "repository": {
     "type": "git",
@@ -18,6 +20,7 @@
   },
   "homepage": "https://github.com/SayeedMahdi/showOS#readme",
   "dependencies": {
+    "chalk": "^5.0.1",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "mongoose": "^6.3.6",
