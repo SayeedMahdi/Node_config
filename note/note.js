@@ -45,6 +45,19 @@ const addNote = (title, body) => {
   }
 };
 
+//delete a note with given title
+const deleteNote = (title) =>{
+  const notes = loadNotes();
+  const noteToKeep = notes.filter((nt) => {
+    return nt.title !== title;
+  });
+  if(notes.length > noteToKeep.length){
+    saveNote(noteToKeep);
+    console.log("deleted the note");
+  }else{
+    console.log("There is not such note title in json file.");
+  }
+}
 //load notes
 const loadNotes = () => {
   try {
@@ -60,8 +73,11 @@ const loadNotes = () => {
 const saveNote = (note) => {
   fs.writeFileSync("note.json", JSON.stringify(note));
 };
+
+
 //some expoets
 module.exports = {
   addNote,
   getNote,
+  deleteNote
 };

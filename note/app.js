@@ -8,6 +8,8 @@ yargs.command({
     console.log("list of notes");
   },
 });
+
+//create some command
 yargs.command({
   command: "create",
   describe: "create",
@@ -27,6 +29,23 @@ yargs.command({
     notes.addNote(argv.title, argv.body);
   },
 });
+
+//delete command
+yargs.command({
+  command: "delete",
+  describe: "delete",
+  builder: {
+    title: {
+      describe: "delete some title",
+      type: "string",
+      demandOption: true,
+    }
+  },
+  handler: function (argv) {
+    notes.deleteNote(argv.title);
+  },
+});
+//read command
 yargs.command({
   command: "read",
   describe: "some description",
