@@ -1,5 +1,5 @@
 const fs = require("fs");
-
+const chalk = require("chalk");
 // const user = {
 
 //     username  :"mahdi",
@@ -40,8 +40,9 @@ const addNote = (title, body) => {
       body: body,
     });
     saveNote(notes);
+    console.log(chalk.green.inverse("added one note!"));
   } else {
-    console.log("The title is duplicated.");
+    console.log(chalk.red.inverse("The title is duplicated."));
   }
 };
 
@@ -53,9 +54,9 @@ const deleteNote = (title) =>{
   });
   if(notes.length > noteToKeep.length){
     saveNote(noteToKeep);
-    console.log("deleted the note");
+    console.log(chalk.green.inverse("deleted the note"));
   }else{
-    console.log("There is not such note title in json file.");
+    console.log(chalk.red.inverse("There is not such note title in json file."));
   }
 }
 //load notes
