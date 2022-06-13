@@ -8,7 +8,7 @@
     "start": "nodemon app.js",
     "data:me": "nodemon data.js",
     "data:file": "nodemon tixe.txt",
-    "data:yargs":"nodemon note.js"
+    "data:yargs": "nodemon note.js"
   },
   "repository": {
     "type": "git",
@@ -21,7 +21,8 @@
   },
   "homepage": "https://github.com/SayeedMahdi/showOS#readme",
   "dependencies": {
-    "chalk": "^5.0.1",
+    "archiver": "^5.3.1",
+    "chalk": "^4.1.0",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "mongoose": "^6.3.6",
