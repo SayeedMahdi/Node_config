@@ -1,11 +1,13 @@
 const yargs = require("yargs");
 const notes = require("./note");
 
+
+//list all notes
 yargs.command({
   command: "list",
   describe: "Some notes to show",
-  handler: () => {
-    console.log("list of notes");
+  handler() {
+    notes.getNote()
   },
 });
 
@@ -25,7 +27,7 @@ yargs.command({
       demandOption: true,
     },
   },
-  handler: function (argv) {
+  handler(argv) {
     notes.addNote(argv.title, argv.body);
   },
 });
@@ -39,18 +41,18 @@ yargs.command({
       describe: "delete some title",
       type: "string",
       demandOption: true,
-    }
+    },
   },
-  handler: function (argv) {
+  handler: (argv) => {
     notes.deleteNote(argv.title);
   },
 });
-//read command
+//read command for one note
 yargs.command({
   command: "read",
-  describe: "some description",
-  handler: () => {
-    console.log("read data");
+  describe: "some description note",
+  handler(argv) {
+    notes.findOne(argv.title);
   },
 });
 console.log(yargs.argv);

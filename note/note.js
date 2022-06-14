@@ -23,18 +23,21 @@ const chalk = require("chalk");
 // console.log(data);
 // fs.writeFileSync("json1.json",JSON.stringify(data));
 const getNote = () => {
-  console.log("Get all notes");
+  const notes = loadNotes();
+  console.log(chalk.yellowBright("Title"),"\t\t",chalk.blueBright("Description"));
+  notes.forEach(element => {
+  console.log(chalk.red(element.title),"\t",chalk.green(element.body));  
+  });
+
 };
 
 const addNote = (title, body) => {
   //cheak for array of notes to push in it
   const notes = loadNotes();
   //find duplicate
-  const duplicate = notes.filter((note) => {
-    return note.title === title;
-  });
+  const duplicate = notes.find((note) =>  note.title === title);
 
-  if (duplicate.length === 0) {
+  if (!duplicate) {
     notes.push({
       title: title,
       body: body,
@@ -75,10 +78,23 @@ const saveNote = (note) => {
   fs.writeFileSync("note.json", JSON.stringify(note));
 };
 
+//find a note
+const findOne = (title) =>{
+  const notes = loadNotes();
+  const oneNote = notes.find((nt)=>nt.title === title);
+  console.log(oneNote);
+  if(oneNote){
+    console.log(chalk.green.inverse(oneNote.title), "\t",chalk.green.inverse(oneNote.body));
+  }else{
+    console.log(chalk.red.inverse("Not found!"));
+  }
+}
 
 //some expoets
 module.exports = {
+  getNote,
   addNote,
   getNote,
-  deleteNote
+  deleteNote,
+  findOne
 };
