@@ -83,8 +83,9 @@ const findOne = (title) =>{
   const notes = loadNotes();
   const oneNote = notes.find((nt)=>nt.title === title);
   console.log(oneNote);
+  debugger
   if(oneNote){
-    console.log(chalk.green.inverse(oneNote.title), "\t",chalk.green.inverse(oneNote.body));
+    console.log(chalk.green.inverseit (oneNote.title), "\t",chalk.green.inverse(oneNote.body));
   }else{
     console.log(chalk.red.inverse("Not found!"));
   }
