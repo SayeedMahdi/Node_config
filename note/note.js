@@ -66,7 +66,7 @@ const deleteNote = (title) =>{
 const loadNotes = () => {
   try {
     const bufferNote = fs.readFileSync("note.json");
-    const note = bufferNote.toString();
+    const note   = bufferNote.toString();
     return JSON.parse(note);
   } catch (e) {
     return [];
