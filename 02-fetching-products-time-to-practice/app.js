@@ -10,13 +10,14 @@ const db = require("./database/DBConnection");
 
 const app = express();
 
-db.execute(`CREATE TABLE IF NOT EXISTS product(
-  id int AUTO_INCREMENT PRIMARY KEY,
-  title varchar(255),
-  price int,
-  description varchar(255)
-
-) `);
+// db.execute("DROP TABLE product;");
+// db.execute(`CREATE TABLE IF NOT EXISTS product(
+//   id int AUTO_INCREMENT PRIMARY KEY,
+//   title varchar(255),
+//   price int,
+//   description varchar(255),
+//   imageUrl varchar(255)
+// ) `);
 app.set("view engine", "ejs");
 app.set("views", "views");
 
@@ -31,4 +32,4 @@ app.use(shopRoutes);
 
 app.use(errorController.get404);
 
-app.listen(3000);
+app.listen(3000, console.log("listening on http://localhost:3000"));
